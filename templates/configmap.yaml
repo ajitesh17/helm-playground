@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+   name: {{ include "playground.fullname" . }}
+data:
+# default.json: |
+#{{ .Files.Get "default.json" | indent 4 }}
+{{ (.Files.Glob "config/*").AsConfig | indent 4 }}
+#.Files.Glob returns a file object

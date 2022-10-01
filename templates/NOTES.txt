@@ -1,0 +1,27 @@
+The name of this chart is {{ .Chart.Name }},its version is {{ .Chart.Version }} and the bundled application version is {{ .Chart.AppVersion }}.
+The release name is {{ .Release.Name }} and it will be installed to the {{ .Release.Namespace }} namespace.
+Is this a new installation? {{ .Release.IsInstall }}
+Is this an upgrade? {{ .Release.IsUpgrade }}
+The version of Kubernetes running on this cluster is {{ .Capabilities.KubeVersion }}
+resources:
+  {{- toYaml .Values.resources | nindent 2 }}
+
+{{ if eq .Values.service.type "ClusterIP" -}}
+  The service type is ClusterIP
+{{- end }}
+
+{{- if eq .Values.service.type "ClusterIP" -}}
+The service type is ClusterIP
+{{- else if eq .Values.service.type "NodePort" -}}
+The service type is NodePort
+{{ else }}
+The service type is LoadBalancer
+{{- end -}}
+
+{{- if and (eq .Values.service.type "ClusterIP") .Values.ingress.enabled -}}
+The service type is CLusterIP and ingress is enabled
+{{- end -}}
+
+{{- if lt (.Capabilities.KubeVersion.Minor | int) 23 -}}
+{{- fail "This chart requires Kubernetes Version 1.23 or higher" -}}
+{{- end -}}
