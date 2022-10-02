@@ -6,10 +6,10 @@ replicaCount: 1
 
 image:
   repository: afakharany/hellonodejs
-  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: 2.0.0
 
+environment: ""
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

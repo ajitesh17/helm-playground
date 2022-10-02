@@ -11,9 +11,6 @@ spec:
   type: {{ .Values.service.type }}
   ports:
   {{- range $key, $value := $ports }}
-  #{{- if and (eq ($value.port | int) 8080) (eq $value.name "admin") }}
-  #{{- fail "please use another port number other than 8080 for the admin port" }}
-  #{{- end -}}
     - port: {{ .port }}
       protocol: TCP
       targetPort: {{ .targetPort }}
