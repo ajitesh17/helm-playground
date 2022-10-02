@@ -4,5 +4,9 @@
   },
   "environment": {
       "SSL" : false
+  },
+  "redis": {
+    "server": "{{ .Release.Name }}-redis-server",
+    "port": "6379"
   }
 }
